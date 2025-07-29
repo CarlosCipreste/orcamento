@@ -3,7 +3,7 @@ import { PDFDocument } from "pdf-lib";
 import { promises as fs } from "fs";
 import path from "path";
 import { OrcamentoDTO } from "@/app/types/OrcamentoDTO";
-import { GetSOAndIncrement } from "@/app/services/GetSONumber";
+import { GetSOAndIncrement } from "@/app/services/GetOsNumber";
 
 async function generateOrcamentoPDF(
     orcamento: OrcamentoDTO,
