@@ -1,8 +1,6 @@
 'use client'
 import React from 'react'
 import { ErrorBox } from './ErrorBox'
-
-import { useFieldArray } from 'react-hook-form';
 import { TabelaItensOrcamentoProps } from '../types/TabelaItensOrcamentoProps';
 
 const TabelaItensOrcamento = ({fields, remove, append, register, errors} : TabelaItensOrcamentoProps) => {

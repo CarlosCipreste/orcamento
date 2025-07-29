@@ -6,7 +6,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useFieldArray } from 'react-hook-form';
 import { OrcamentoDTO } from '../types/OrcamentoDTO';
 import { enviarOrcamentoEbaixarPDF } from '../services/SendPdfData';
-import { ErrorBox } from './ErrorBox';
 import TabelaItensOrcamento from './TabelaItensOrcamento';
 import { FormField } from './FormField';
 import { OrcamentoData, OrcamentoFormSchema } from '../schemas/orcamento';
@@ -70,43 +69,42 @@ export default function OrcForm() {
         '
         >
 
-            <FormField label="Cliente" error={errors.nome?.message}
-                children={<input
+            <FormField
+                label="Cliente"
+                error={errors.nome?.message}
+                name="name"
+            >
+                <input
                     {...register('nome')}
                     placeholder="Nome"
-                    className="rounded-lg p-2 w-full bg-gray-200 " />
-                } name={'name'}>
-
+                    className="rounded-lg p-2 w-full bg-gray-200"
+                />
             </FormField>
 
-            <FormField label="Telefone" error={errors.telefone?.message} name={'telefone'} children={
+
+            <FormField label="Telefone" error={errors.telefone?.message} name={'telefone'}>
                 <input
                     {...register('telefone')}
                     placeholder="Telefone"
                     className="rounded-lg p-2 bg-gray-200 w-full"
                 />
-            }>
-
             </FormField>
 
-            <FormField label="Documento" error={errors.documento?.message} name={'documento'} children={
+            <FormField label="Documento" error={errors.documento?.message} name={'documento'}>
                 <input
                     {...register('documento')}
                     placeholder="CPF/CNPJ"
                     className="rounded-lg p-2 bg-gray-200 w-full"
                 />
-            }>
-
             </FormField>
 
-            <FormField label="Endereço" error={errors.endereco?.message} name={'endereco'} children={<input
-                {...register('endereco')}
-                placeholder="Endereço"
-                className="rounded-lg p-2 bg-gray-200 w-full"
-            />}>
-
-            </FormField>
-
+            <FormField label="Endereço" error={errors.endereco?.message} name={'endereco'}>
+                <input
+                    {...register('endereco')}
+                    placeholder="Endereço"
+                    className="rounded-lg p-2 bg-gray-200 w-full"
+                />
+            </FormField>-
             <TabelaItensOrcamento
                 fields={fields}
                 append={append}

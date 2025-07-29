@@ -1,6 +1,5 @@
 'use client'
 import { ErrorBox } from "./ErrorBox";
-import { HTMLInputTypeAttribute } from "react";
 
 type Props = {
   label: string;
