@@ -9,6 +9,7 @@ import { enviarOrcamentoEbaixarPDF } from '../services/SendPdfData';
 import TabelaItensOrcamento from './TabelaItensOrcamento';
 import { FormField } from './FormField';
 import { OrcamentoData, OrcamentoFormSchema } from '../schemas/orcamento';
+import { useHookFormMask } from 'use-mask-input';
 
 export default function OrcForm() {
 
@@ -27,6 +28,8 @@ export default function OrcForm() {
             itens: [{ descricao: '', quantidade: 1, precoUnitario: 0 }],
         }
     })
+
+    const registerWithMask = useHookFormMask(register);
 
     const { fields, append, remove } = useFieldArray({
         control,
@@ -55,13 +58,14 @@ export default function OrcForm() {
             className='
         border-1
         shadow-lg
-        border-gray-100
+        border-gray-200
         rounded-2xl 
         flex  
         flex-col 
         items-center 
         gap-4 
         p-4
+        pt-6
         [&>div]:flex
         [&>div]:gap-2
         [&>div]:items-center
@@ -77,6 +81,7 @@ export default function OrcForm() {
                 <input
                     {...register('nome')}
                     placeholder="Nome"
+                    
                     className="rounded-lg p-2 w-full bg-gray-200"
                 />
             </FormField>
@@ -84,15 +89,15 @@ export default function OrcForm() {
 
             <FormField label="Telefone" error={errors.telefone?.message} name={'telefone'}>
                 <input
-                    {...register('telefone')}
+                    {...registerWithMask('telefone', ["(99) 99999-9999"])}
                     placeholder="Telefone"
                     className="rounded-lg p-2 bg-gray-200 w-full"
                 />
             </FormField>
 
-            <FormField label="Documento" error={errors.documento?.message} name={'documento'}>
+            <FormField label="CPF/CNPJ" error={errors.documento?.message} name={'documento'}>
                 <input
-                    {...register('documento')}
+                    {...registerWithMask('documento', ["999.999.999-99", "99.999.999/9999-99"])}
                     placeholder="CPF/CNPJ"
                     className="rounded-lg p-2 bg-gray-200 w-full"
                 />
